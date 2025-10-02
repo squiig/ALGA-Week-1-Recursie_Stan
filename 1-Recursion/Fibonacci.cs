@@ -6,45 +6,45 @@ using System.Threading.Tasks;
 
 namespace ALGA
 {
-  public class Fibonacci
-  {
-    public static int fibonacci_recursive(int n)
+    public class Fibonacci
     {
-      if (n <= 0) return 0;
-      if (n == 1) return 1;
+        public static int fibonacci_recursive(int n)
+        {
+            if (n <= 0) return 0;
+            if (n == 1) return 1;
 
-      if (n > 46) throw new ArgumentOutOfRangeException(nameof(n), "n may not exceed 46, because the result would exceed the size of Int32.");
+            if (n > 46) throw new ArgumentOutOfRangeException(nameof(n), "n may not exceed 46, because the result would exceed the size of Int32.");
 
-      return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
+            return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
+        }
+
+        public static int fibonacci_iterative(int n)
+        {
+            if (n <= 0) return 0;
+            if (n == 1) return 1;
+
+            int a = 0;
+            int b = 1;
+
+            for (int i = 2; i <= n; ++i)
+            {
+                int temp = a + b;
+                a = b;
+                b = temp;
+            }
+
+            return b;
+
+            //var sqrt5 = Math.Sqrt(5);
+            //return (int)((Math.Pow(1 + sqrt5, n) - Math.Pow(1 - sqrt5, n)) / (Math.Pow(2, n) * sqrt5));
+        }
+
+        public enum Answer { IterativeIsFaster, RecursiveIsFaster };
+
+        public static Answer which_is_faster()
+        {
+            return Answer.IterativeIsFaster;
+            // return Answer.RecursiveIsFaster;
+        }
     }
-
-    public static int fibonacci_iterative(int n)
-    {
-      if (n <= 0) return 0;
-      if (n == 1) return 1;
-
-      int a = 0;
-      int b = 1;
-
-      for (int i = 2; i <= n; ++i)
-      {
-        int temp = a + b;
-        a = b;
-        b = temp;
-      }
-
-      return b;
-
-      //var sqrt5 = Math.Sqrt(5);
-      //return (int)((Math.Pow(1 + sqrt5, n) - Math.Pow(1 - sqrt5, n)) / (Math.Pow(2, n) * sqrt5));
-    }
-
-    public enum Answer { IterativeIsFaster, RecursiveIsFaster };
-
-    public static Answer which_is_faster()
-    {
-      return Answer.IterativeIsFaster;
-      // return Answer.RecursiveIsFaster;
-    }
-  }
 }
