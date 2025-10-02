@@ -12,6 +12,9 @@ namespace ALGA
     {
       if (n <= 0) return 0;
       if (n == 1) return 1;
+
+      if (n > 46) throw new ArgumentOutOfRangeException(nameof(n), "n may not exceed 46, because the result would exceed the size of Int32.");
+
       return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
     }
 
